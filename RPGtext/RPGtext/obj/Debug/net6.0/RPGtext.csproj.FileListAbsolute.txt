@@ -1,0 +1,14 @@
+C:\_Workspace\textRPG\RPGtext\RPGtext\bin\Debug\net6.0\RPGtext.exe
+C:\_Workspace\textRPG\RPGtext\RPGtext\bin\Debug\net6.0\RPGtext.deps.json
+C:\_Workspace\textRPG\RPGtext\RPGtext\bin\Debug\net6.0\RPGtext.runtimeconfig.json
+C:\_Workspace\textRPG\RPGtext\RPGtext\bin\Debug\net6.0\RPGtext.dll
+C:\_Workspace\textRPG\RPGtext\RPGtext\bin\Debug\net6.0\RPGtext.pdb
+C:\_Workspace\textRPG\RPGtext\RPGtext\obj\Debug\net6.0\RPGtext.GeneratedMSBuildEditorConfig.editorconfig
+C:\_Workspace\textRPG\RPGtext\RPGtext\obj\Debug\net6.0\RPGtext.AssemblyInfoInputs.cache
+C:\_Workspace\textRPG\RPGtext\RPGtext\obj\Debug\net6.0\RPGtext.AssemblyInfo.cs
+C:\_Workspace\textRPG\RPGtext\RPGtext\obj\Debug\net6.0\RPGtext.csproj.CoreCompileInputs.cache
+C:\_Workspace\textRPG\RPGtext\RPGtext\obj\Debug\net6.0\RPGtext.dll
+C:\_Workspace\textRPG\RPGtext\RPGtext\obj\Debug\net6.0\refint\RPGtext.dll
+C:\_Workspace\textRPG\RPGtext\RPGtext\obj\Debug\net6.0\RPGtext.pdb
+C:\_Workspace\textRPG\RPGtext\RPGtext\obj\Debug\net6.0\RPGtext.genruntimeconfig.cache
+C:\_Workspace\textRPG\RPGtext\RPGtext\obj\Debug\net6.0\ref\RPGtext.dll
