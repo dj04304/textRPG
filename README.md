@@ -37,7 +37,6 @@
 
 ##  기술 스택
 
-![Unity](https://img.shields.io/badge/-Unity-%23000000?style=flat-square&logo=Unity)
 ![C#](https://img.shields.io/badge/-C%23-%7ED321?logo=Csharp&style=flat)
 
 
