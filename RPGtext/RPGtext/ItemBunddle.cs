@@ -15,6 +15,12 @@ namespace RPGtext
             public int price { get; set; }
             public string info { get; set; }
             public bool isEquip { get; set; }
+
+            public override string ToString()
+            {
+                return $"이름: {name}, 상태: {status}, 가격: {price}, 정보: {info}";
+            }
+
         }
 
         public class Sword : Item

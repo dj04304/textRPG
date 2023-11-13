@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "w1pOS2WkaNCqnUJUQtal+iR3inpT5gNUtsFEDoD6GblbtP7odj3ZrNVbYIuJmBv84LraYk/dPCnlP0/VK5PAew==",
+  "dgSpecHash": "0WeshlcYNXdrgL9IWfP8akGNT4I02ayzfnYZmPNHzDMGZZS2rkY/QpDNZQomr6egc46vGpgopLZ+YnTkC5KR2w==",
   "success": true,
   "projectFilePath": "C:\\_Workspace\\textRPG\\RPGtext\\RPGtext\\RPGtext.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\dj043\\.nuget\\packages\\consoletables\\2.6.1\\consoletables.2.6.1.nupkg.sha512"
+  ],
   "logs": []
 }

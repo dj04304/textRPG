@@ -3,6 +3,7 @@ using static RPGtext.ICharacterinter;
 using static RPGtext.Program;
 using static RPGtext.CharacterJob;
 using static RPGtext.ItemBunddle;
+using ConsoleTables;
 
 namespace RPGtext
 {
@@ -75,6 +76,7 @@ namespace RPGtext
                 Console.WriteLine("어느것을 하시겠습니까?");
                 Console.WriteLine("1. 상태보기");
                 Console.WriteLine("2. 인벤토리");
+                Console.WriteLine("3. 상점");
                 Console.WriteLine(" ");
                 Console.WriteLine("0. 뒤로가기");
 
@@ -95,6 +97,12 @@ namespace RPGtext
                         isChoice = true;
                         Inventory(selectCharacter, armor, sword);
                         break;
+                    case ConsoleKey.NumPad3:
+                    case ConsoleKey.D3:
+                        Console.WriteLine("상점으로 이동합니다..");
+                        isChoice = true;
+                        Shop();
+                        break;
                     case ConsoleKey.NumPad0:
                     case ConsoleKey.D0:
                         Console.WriteLine("뒤로가기.");
@@ -112,34 +120,53 @@ namespace RPGtext
         {
             bool isBack = false;
 
+            int totalAtkStatus = (character.atk) + ((int)sword.status);
+            int totalDefStatus = (character.def) + ((int)armor.status);
+            int totalHpStatus = (character.hp) + 0;
+
             Console.Clear();
             Console.WriteLine("상태보기창 입니다.");
-            Console.WriteLine($"이름: {character.name}");
-            Console.WriteLine($"레벨: {character.level}LV");
-            Console.WriteLine($"직업: {character.job}");
-            if (sword.isEquip)
-            {
-                //Console.WriteLine($"공격력: {character.atk} + ({(int)sword.status})" 
-                //        + (character.atk) + ((int)sword.status));
-                //Console.WriteLine($"방어력: {character.def} + ({(int)armor.status})" 
-                //        + (character.def) + ((int)armor.status));
-
-                Console.WriteLine($"공격력: {character.atk + (int)sword.status}" +
-                    $" / {character.atk} + ({sword.status})");
-                Console.WriteLine($"방어력: {character.def + (int)armor.status}" +
-                     $" / {character.def} + ({armor.status})");
+            var table = new ConsoleTable(" ", $"{character.name}", $"{character.job}", " ");
+            table.AddRow("스탯", "기본 스탯", "장비 스탯", "총 스탯")
+                    .AddRow($"공격력", $"{character.atk}", $"{sword.status}", $"{totalAtkStatus}")
+                    .AddRow($"방어력", $"{character.def}", $"{armor.status}", $"{totalDefStatus}")
+                    .AddRow($"체력", $"{character.hp}", " 0 ", $"{totalHpStatus}")
+                    .AddRow($"소지골드", $"{character.gold}", "", "")
+                    .AddRow("무기", "무기이름", "무기스탯", "가격")
+                    .AddRow($"장착한 무기", $"{sword.name}", $"{sword.status}", $"{sword.price}")
+                    .AddRow($"장착한 방어구", $"{armor.name}", $"{armor.status}", $"{armor.price}")
+                    ;
 
 
-            }
-            else
-            {
-                Console.WriteLine($"공격력: {character.atk}");
-                Console.WriteLine($"방어력: {character.def}");
-            }
-            Console.WriteLine($"장착한 무기: {sword.name}");
-            Console.WriteLine($"장착한 방어구: {armor.name}");
-            Console.WriteLine($"HP: {character.hp}");
-            Console.WriteLine($"소지골드: {character.gold}");
+            table.Write();
+              
+
+            //Console.WriteLine($"이름: {character.name}");
+            //Console.WriteLine($"레벨: {character.level}LV");
+            //Console.WriteLine($"직업: {character.job}");
+            //if (sword.isEquip)
+            //{
+            //    //Console.WriteLine($"공격력: {character.atk} + ({(int)sword.status})" 
+            //    //        + (character.atk) + ((int)sword.status));
+            //    //Console.WriteLine($"방어력: {character.def} + ({(int)armor.status})" 
+            //    //        + (character.def) + ((int)armor.status));
+
+            //    Console.WriteLine($"공격력: {character.atk + (int)sword.status}" +
+            //        $" / {character.atk} + ({sword.status})");
+            //    Console.WriteLine($"방어력: {character.def + (int)armor.status}" +
+            //         $" / {character.def} + ({armor.status})");
+
+
+            //}
+            //else
+            //{
+            //    Console.WriteLine($"공격력: {character.atk}");
+            //    Console.WriteLine($"방어력: {character.def}");
+            //}
+            //Console.WriteLine($"장착한 무기: {sword.name}");
+            //Console.WriteLine($"장착한 방어구: {armor.name}");
+            //Console.WriteLine($"HP: {character.hp}");
+            //Console.WriteLine($"소지골드: {character.gold}");
 
             Console.WriteLine("0. 나가기");
 
@@ -204,6 +231,35 @@ namespace RPGtext
             bool isChoice = false;
             string userInput = " ";
 
+            //SwordDto swordDto = new SwordDto();
+            //List<Sword> swords = swordDto.sword;
+
+            //int index = 1;
+
+            //foreach(Sword newSword in swords)
+            //{
+            //    Console.WriteLine($"{index}. {newSword.name}, 공격력: {newSword.status}, 가격: {newSword.price}");
+            //    index++;
+            //}
+
+            //int selectedIndex;
+            //if(int.TryParse(Console.ReadLine(), out selectedIndex) && selectedIndex >= 1 && selectedIndex <= swords.Count)
+            //{
+            //    Console.WriteLine("장착하시겠습니까? (Y/N)");
+            //    userInput = Console.ReadLine().ToUpper();
+            //    if (userInput == "Y") 
+            //    {
+
+            //        swords[selectedIndex - 1].name = "[E]" + swords[selectedIndex - 1].name;
+            //        swords[selectedIndex - 1].isEquip = true;
+            //        Console.WriteLine("장착되었습니다.");
+            //        Console.WriteLine($"{swords[selectedIndex - 1].name}");
+            //        Console.WriteLine("아무키나 입력하시면 인벤토리로 이동합니다.");
+            //        Console.ReadLine();
+            //    }
+            //}
+
+
             Sword wornSword = new Sword();
             wornSword.SwordInitial("낡은 검", 5, 200, "평범한 낡은 검입니다.", false);
             Sword iceSword = new Sword();
@@ -211,16 +267,16 @@ namespace RPGtext
             Sword fireSword = new Sword();
             fireSword.SwordInitial("불 검", 10, 500, "불로 만든 검입니다.", false);
 
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine("무기 인벤토리입니다.");
             Console.WriteLine("무기 리스트");
             Console.WriteLine($"1.{wornSword.name}");
-            Console.WriteLine($"2.{iceSword.name}");
+            Console.WriteLine($"2.{iceSword.name}"); 
             Console.WriteLine($"3.{fireSword.name}");
             Console.WriteLine("장착하실 아이템 번호를 입력해주세요");
 
             ConsoleKeyInfo key = Console.ReadKey();
-            Console.ReadLine();
+            //Console.ReadLine();
 
             while (!isChoice)
             {
@@ -236,7 +292,7 @@ namespace RPGtext
                             wornSword.SwordInitial("[E]낡은 검", 5, 200, "평범한 낡은 검입니다.", true);
                             Console.WriteLine("장착되었습니다.");
                             Console.WriteLine("아무키나 입력하시면 인벤토리로 이동합니다.");
-                            Console.ReadLine(); ;
+                            Console.ReadLine();
                             Inventory(character, armor, wornSword);
                             isChoice = true;
                         }
@@ -311,6 +367,8 @@ namespace RPGtext
                         break;
                     default:
                         Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요");
+                        SwordInventory(character, armor, sword);
+                        isChoice = true;
                         break;
                 }
             }
@@ -434,6 +492,50 @@ namespace RPGtext
 
         }
 
+        static void Shop()
+        {
+            ShopItemsDto itemsDto = new ShopItemsDto();
+            List<Item> itemList = itemsDto.items;
+
+            int index = 1;
+
+
+            Console.Clear();
+            Console.WriteLine("아이템 상점 입니다.");
+            Console.WriteLine("아이템을 선택해주세요");
+            Console.WriteLine("");
+
+            foreach (Item item in itemList)
+            {
+                Console.WriteLine($"{index}." + item);
+                index++;
+            }
+
+            Console.WriteLine("번호를 입력하세요: ");
+            int selectedIndex;
+
+            if(int.TryParse(Console.ReadLine(), out selectedIndex) && selectedIndex >= 1 && selectedIndex <= itemList.Count) 
+            {
+                Item selectShopItem = itemList[selectedIndex - 1];
+                Console.WriteLine($"구매한 아이템: {selectShopItem.name}");
+
+
+                Sword sword = new Sword();
+                sword.name = selectShopItem.name;
+                sword.price = selectShopItem.price;
+                sword.status = selectShopItem.status;
+                sword.info = selectShopItem.info;
+                sword.isEquip = selectShopItem.isEquip;
+
+                Console.ReadLine();
+            }else
+            {
+                Console.WriteLine("올바르지 않은 번호입니다. ");
+            }
+         
+
+        }
+
         static void Main(string[] args)
         {
             Player player = new Player();
@@ -447,6 +549,7 @@ namespace RPGtext
             armor.ArmorInitial("기본방어구", 2, 50, "기본 방어구입니다.", true);
             sword.SwordInitial("기본검", 2, 50, "기본 검입니다.", true);
 
+       
 
             Console.WriteLine("============ 게임 시작 ============");
             Console.WriteLine("마을에 오신 여러분들을 환영합니다");
