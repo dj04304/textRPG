@@ -267,7 +267,7 @@ namespace RPGtext
             Sword fireSword = new Sword();
             fireSword.SwordInitial("불 검", 10, 500, "불로 만든 검입니다.", false);
 
-            //Console.Clear();
+            Console.Clear();
             Console.WriteLine("무기 인벤토리입니다.");
             Console.WriteLine("무기 리스트");
             Console.WriteLine($"1.{wornSword.name}");
@@ -276,7 +276,7 @@ namespace RPGtext
             Console.WriteLine("장착하실 아이템 번호를 입력해주세요");
 
             ConsoleKeyInfo key = Console.ReadKey();
-            //Console.ReadLine();
+            Console.ReadLine();
 
             while (!isChoice)
             {
@@ -378,6 +378,7 @@ namespace RPGtext
         static void ArmorInventory(ICharacterinter.ICharacter character, Armor armor, Sword sword)
         {
             bool isChoice = false;
+            string userInput = " ";
 
             Armor wornArmor = new Armor();
             wornArmor.ArmorInitial("낡은 방어구", 5, 200, "평범한 낡은 방어구입니다.", false);
@@ -392,9 +393,9 @@ namespace RPGtext
             Console.WriteLine($"1.{wornArmor.name}");
             Console.WriteLine($"2.{iceArmor.name}");
             Console.WriteLine($"3.{fireArmor.name}");
+            Console.WriteLine("장착하실 아이템 번호를 입력해주세요");
 
-            string userInput = Console.ReadLine().ToUpper();
-
+           
             ConsoleKeyInfo key = Console.ReadKey();
             Console.ReadLine();
 
@@ -406,7 +407,7 @@ namespace RPGtext
                     case ConsoleKey.D1:
                         Console.WriteLine($"{wornArmor.name}, 방어력: {wornArmor.status}, 가격: {wornArmor.price}, 정보: {wornArmor.info}");
                         Console.WriteLine("장착하시겠습니까? (Y/N)");
-
+                        userInput = Console.ReadLine().ToUpper();
                         if (userInput == "Y")
                         {
                             wornArmor.ArmorInitial("[E]낡은 방어구", 5, 200, "평범한 낡은 방어구입니다.", true);
@@ -432,7 +433,7 @@ namespace RPGtext
                     case ConsoleKey.D2:
                         Console.WriteLine($"{iceArmor.name}, 공격력: {iceArmor.status}, 가격: {iceArmor.price}, 정보: {iceArmor.info}");
                         Console.WriteLine("장착하시겠습니까? (Y/N)");
-                        Console.ReadLine().ToUpper();
+                        userInput = Console.ReadLine().ToUpper();
                         if (userInput == "Y")
                         {
                             iceArmor.ArmorInitial("[E]얼음 방어구", 10, 500, "얼음으로 만든 방어구입니다.", true);
@@ -458,6 +459,7 @@ namespace RPGtext
                     case ConsoleKey.D3:
                         Console.WriteLine($"{fireArmor.name}, 공격력: {fireArmor.status}, 가격: {fireArmor.price}, 정보: {fireArmor.info}");
                         Console.WriteLine("장착하시겠습니까? (Y/N)");
+                        userInput = Console.ReadLine().ToUpper();
                         if (userInput == "Y")
                         {
                             fireArmor.ArmorInitial("[E]불 방어구", 5, 200, "불로 만든 방어구입니다.", true);
@@ -486,6 +488,8 @@ namespace RPGtext
                         break;
                     default:
                         Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요");
+                        ArmorInventory(character, armor, sword);
+                        isChoice = true;
                         break;
                 }
             }
